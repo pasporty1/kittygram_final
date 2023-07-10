@@ -11,13 +11,13 @@ services:
     env_file: .env
     volumes:
       - kitty_pg_data:/var/lib/postgresql/data
-  kitty_backend:
-    image: testuseryccamp/kitty_backend
+  kittygram_backend:
+    image: testuseryccamp/kittygram_backend
     env_file: .env
     volumes:
       - static:/backend_static
-  kitty_frontend:
-    image: testuseryccamp/kitty_frontend
+  kittygram_frontend:
+    image: testuseryccamp/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
@@ -25,8 +25,8 @@ services:
     
 
 # Добавляем новый контейнер: gateway.
-  kitty_gateway:
-    image: testuseryccamp/kitty_nginx
+  kittygram_nginx:
+    image: testuseryccamp/kittygram_nginx
     # А тут подключаем volume со статикой к gateway
     volumes:
       - static:/staticfiles/

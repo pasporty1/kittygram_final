@@ -86,7 +86,7 @@ jobs:
             # Для каждого пересобранного образа 
             # устанавливаем тег latest, чтобы потом
             # на сервере и в docker-compose.yml не указывать версию
-            tags: ${{ secrets.DOCKER_USERNAME }}/kitty_backend:latest 
+            tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_backend:latest 
           
   frontend_tests:
       runs-on: ubuntu-latest
@@ -130,7 +130,7 @@ jobs:
         with:
           context: ./frontend/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kitty_frontend:latest 
+          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_frontend:latest 
 
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
@@ -151,7 +151,7 @@ jobs:
           context: ./nginx/
           push: true
           # Тут вместо username должен быть ваш логин на Docker Hub
-          tags: ${{ secrets.DOCKER_USERNAME }}/kitty_nginx:latest    
+          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_nginx:latest    
 
   deploy:
       runs-on: ubuntu-latest
@@ -191,9 +191,9 @@ jobs:
             sudo docker compose -f docker-compose.production.yml down
             sudo docker compose -f docker-compose.production.yml up -d
             # Выполняет миграции и сбор статики
-            sudo docker compose -f docker-compose.production.yml exec kitty_backend python manage.py migrate
-            sudo docker compose -f docker-compose.production.yml exec kitty_backend python manage.py collectstatic
-            sudo docker compose -f docker-compose.production.yml exec kitty_backend cp -r /app/collected_static/. /backend_static/static/
+            sudo docker compose -f docker-compose.production.yml exec kittygram_backend python manage.py migrate
+            sudo docker compose -f docker-compose.production.yml exec kittygram_backend python manage.py collectstatic
+            sudo docker compose -f docker-compose.production.yml exec kittygram_backend cp -r /app/collected_static/. /backend_static/static/
 
   send_message:
     runs-on: ubuntu-latest
