@@ -151,7 +151,7 @@ jobs:
           context: ./nginx/
           push: true
           # Тут вместо username должен быть ваш логин на Docker Hub
-          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_nginx:latest    
+          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_gateway:latest    
 
   deploy:
       runs-on: ubuntu-latest

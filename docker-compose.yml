@@ -25,7 +25,7 @@ services:
     
 
 # Добавляем новый контейнер: gateway.
-  kittygram_nginx:
+  kittygram_gateway:
     build: ./nginx/
     # А тут подключаем volume со статикой к gateway
     volumes:

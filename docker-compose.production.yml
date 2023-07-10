@@ -25,8 +25,8 @@ services:
     
 
 # Добавляем новый контейнер: gateway.
-  kittygram_nginx:
-    image: testuseryccamp/kittygram_nginx
+  kittygram_gateway:
+    image: testuseryccamp/kittygram_gateway
     # А тут подключаем volume со статикой к gateway
     volumes:
       - static:/staticfiles/
