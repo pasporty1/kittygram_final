@@ -26,9 +26,9 @@ services:
 
 # Добавляем новый контейнер: gateway.
   kitty_gateway:
-    build: ./gateway/
+    build: ./nginx/
     # А тут подключаем volume со статикой к gateway
     volumes:
       - static:/staticfiles/
     ports:
-      - 8080:80 
+      - 9000:80 

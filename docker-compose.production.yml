@@ -26,7 +26,7 @@ services:
 
 # Добавляем новый контейнер: gateway.
   kitty_gateway:
-    image: testuseryccamp/kitty_gateway
+    image: testuseryccamp/kitty_nginx
     # А тут подключаем volume со статикой к gateway
     volumes:
       - static:/staticfiles/
