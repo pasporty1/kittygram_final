@@ -148,10 +148,10 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          context: ./gateway/
+          context: ./nginx/
           push: true
           # Тут вместо username должен быть ваш логин на Docker Hub
-          tags: ${{ secrets.DOCKER_USERNAME }}/kitty_gateway:latest    
+          tags: ${{ secrets.DOCKER_USERNAME }}/kitty_nginx:latest    
 
   deploy:
       runs-on: ubuntu-latest
