@@ -1,3 +1,4 @@
+# docker-compose.production.yml
 version: '3'
 
 volumes:
@@ -23,8 +24,6 @@ services:
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
-    
-
   kittygram_gateway:
     image: testuseryccamp/kittygram_gateway
     volumes:
