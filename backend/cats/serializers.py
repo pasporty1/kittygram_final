@@ -40,7 +40,7 @@ class CustomBase64ImageField(Base64ImageField):
         request = self.context.get('request', None)
         if request is not None:
             return request.build_absolute_uri(url).replace(
-                'backend:8000', settings.IP_ADDR)
+                '127.0.0.1:9000', settings.IP_ADDR)
         return url
 
 
@@ -48,7 +48,7 @@ class CatSerializer(serializers.ModelSerializer):
     achievements = AchievementSerializer(required=False, many=True)
     color = Hex2NameColor()
     age = serializers.SerializerMethodField()
-    image = Base64ImageField(required=False, allow_null=True)
+    image = CustomBase64ImageField(required=False, allow_null=True)
 
     class Meta:
         model = Cat
