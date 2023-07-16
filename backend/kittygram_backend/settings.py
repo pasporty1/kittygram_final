@@ -118,4 +118,3 @@ REST_FRAMEWORK = {
 }
 
 IP_ADDR = 'kitygramycprac.ddns.net'
-
