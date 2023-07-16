@@ -40,7 +40,7 @@ class CustomBase64ImageField(Base64ImageField):
         request = self.context.get('request', None)
         if request is not None:
             return request.build_absolute_uri(url).replace(
-                '127.0.0.1:9000', settings.IP_ADDR)
+                'kittygram_backend:9000', settings.IP_ADDR)
         return url
 
 
