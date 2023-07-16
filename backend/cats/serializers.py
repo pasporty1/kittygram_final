@@ -53,6 +53,9 @@ class CatSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('owner',)
 
+    def get_image(self, obj):
+        return obj.image.url.replace('http://127.0.0.1:9000/', 'https://kitygramycprac.ddns.net/')
+
     def get_age(self, obj):
         return dt.datetime.now().year - obj.birth_year
 
