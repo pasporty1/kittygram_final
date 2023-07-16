@@ -2,7 +2,7 @@ import datetime as dt
 
 import webcolors
 from rest_framework import serializers
-from drf_base64.fields import Base64ImageField
+from drf_extra_fields.fields import Base64ImageField
 from django.conf import settings
 
 from .models import Achievement, AchievementCat, Cat
@@ -48,7 +48,7 @@ class CatSerializer(serializers.ModelSerializer):
     achievements = AchievementSerializer(required=False, many=True)
     color = Hex2NameColor()
     age = serializers.SerializerMethodField()
-    image = CustomBase64ImageField(required=False, allow_null=True)
+    image = Base64ImageField(required=False, allow_null=True)
 
     class Meta:
         model = Cat
