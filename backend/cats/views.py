@@ -14,13 +14,24 @@ class CatViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        serializer.data['image'] = serializer.data['image'].replace(
-            'http://127.0.0.1:9000/', 'https://kitygramycprac.ddns.net/'
-        )
-        return Response(serializer.data)
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        data = serializer.data
+        for cat in data:
+            if cat['image']:
+                q2 = f"https://kitygramycprac.ddns.net/media/{cat['image']}"
+                cat['image'] = q2
+        return Response(data)
+
+    def retrieve(self, request, pk=None):
+        cat = self.get_object()
+        serializer = self.get_serializer(cat)
+        data = serializer.data
+        if data['image']:
+            q1 = f"https://kitygramycprac.ddns.net/media/{data['image']}"
+            data['image'] = q1
+        return Response(data)
 
 
 class AchievementViewSet(viewsets.ModelViewSet):
