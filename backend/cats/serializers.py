@@ -1,9 +1,11 @@
 import base64
 import datetime as dt
+from django.conf import settings
 
 import webcolors
 from django.core.files.base import ContentFile
 from rest_framework import serializers
+from drf_base64.fields import Base64ImageField
 
 from .models import Achievement, AchievementCat, Cat
 
@@ -28,15 +30,20 @@ class AchievementSerializer(serializers.ModelSerializer):
         fields = ('id', 'achievement_name')
 
 
-class Base64ImageField(serializers.ImageField):
-    def to_internal_value(self, data):
-        if isinstance(data, str) and data.startswith('data:image'):
-            format, imgstr = data.split(';base64,')
-            ext = format.split('/')[-1]
+class CustomBase64ImageField(Base64ImageField):
+    def to_representation(self, value):
+        if not value:
+            return None
 
-            data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
-
-        return super().to_internal_value(data)
+        try:
+            url = value.url
+        except AttributeError:
+            return None
+        request = self.context.get('request', None)
+        if request is not None:
+            return request.build_absolute_uri(url).replace(
+                'backend:8000', settings.IP_ADDR)
+        return url
 
 
 class CatSerializer(serializers.ModelSerializer):

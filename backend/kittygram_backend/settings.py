@@ -116,3 +116,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 
 }
+
+IP_ADDR = 'kitygramycprac.ddns.net'
+
