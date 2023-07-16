@@ -1,9 +1,7 @@
-import base64
 import datetime as dt
 from django.conf import settings
 
 import webcolors
-from django.core.files.base import ContentFile
 from rest_framework import serializers
 from drf_base64.fields import Base64ImageField
 
