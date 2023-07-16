@@ -1,9 +1,9 @@
 import datetime as dt
-from django.conf import settings
 
 import webcolors
 from rest_framework import serializers
 from drf_base64.fields import Base64ImageField
+from django.conf import settings
 
 from .models import Achievement, AchievementCat, Cat
 
