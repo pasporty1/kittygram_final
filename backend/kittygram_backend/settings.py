@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'djoser',
     'cats.apps.CatsConfig',
 ]
-
+# t  est
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
