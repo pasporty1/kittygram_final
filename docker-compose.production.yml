@@ -18,6 +18,8 @@ services:
     volumes:
       - static:/backend_static
       - media:/app/media
+    expose:
+      - 9000
   kittygram_frontend:
     image: testuseryccamp/kittygram_frontend
     env_file: .env
