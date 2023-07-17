@@ -91,6 +91,6 @@ class CatSerializer(serializers.ModelSerializer):
             )
             lst.append(current_achievement)
         instance.achievements.set(lst)
-
+        # asd
         instance.save()
         return instance
