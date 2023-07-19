@@ -1,4 +1,8 @@
 name: Main Kitty Workflow
+on: 
+  push: 
+
+
 jobs:
   tests:
     runs-on: ubuntu-latest
